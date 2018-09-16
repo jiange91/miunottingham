@@ -84,7 +84,7 @@
         </div>
     <div class="likeandpar">
         <div id="likes">
-        <h3 style="color: whitesmoke">手滑了：</h3>
+        <h3 style="color: whitesmoke">喜欢：</h3>
         <ul>
             {% for like in likes %}
                 <li><a href="{% url 'miunottingham:details' like.act.id %}"style="color: #337ab7">{{ like.act.short_name }}</a></li>
@@ -92,7 +92,7 @@
         </ul>
         </div>
         <div id="pars">
-        <h3 style="color: whitesmoke">去游泳：</h3>
+        <h3 style="color: whitesmoke">想参加：</h3>
         <ul>
             {% for par in pars %}
                 <li><a href="{% url 'miunottingham:details' par.act.id %}" style="color: #337ab7">{{ par.act.short_name }}</a></li>
