@@ -1,0 +1,28 @@
+{% extends "miunottingham/test_base.html" %}
+{% block title %}Groups{% endblock %}
+{% block css %}
+    <style>
+    .reglist li a{
+        color: whitesmoke;
+        text-decoration: none;
+    }
+    .reglist li a:hover{
+        color: lemonchiffon;
+    }
+    .reglist{
+        text-align: center;
+        font-size: 29px;
+        margin: 5em;
+        line-height: 2em;
+    }
+    </style>
+{% endblock %}
+{% block content %}
+    <ol style="margin:5em" class="reglist">
+        {% for group in group_list %}
+            <li><a href="{% url 'miunottingham:group_acts' group.id %}">{{ group.group_name }}</a></li>
+        {% empty %}
+            <p>We have no friends 5555555</p>
+        {% endfor %}
+    </ol>
+{% endblock content %}

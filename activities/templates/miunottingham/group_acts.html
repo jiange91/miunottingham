@@ -1,0 +1,383 @@
+{% load static %}
+{% load likes_tags %}
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Main page</title>
+    <link rel="shortcut icon" href="{% static 'waterfull/img/favicon.ico' %}" type="image/x-icon">
+	    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'waterfull/css/core.css' %}">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'menu/css/reset.css' %}"> <!-- CSS reset -->
+	<!-- Resource style -->
+	<script src="{% static 'menu/js/modernizr.js' %}"></script> <!-- Modernizr -->
+    <link rel="stylesheet" href="{% static 'menu/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/default.css' %}" />
+
+		<link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/component.css' %}" />
+    	<link rel="stylesheet" href="{% static 'navresponse/css/normalize.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'navresponse/css/basic-styles.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'navresponse/css/header.css' %}" media="screen">
+   	<link rel="stylesheet" href="{% static 'navresponse/css/okayNav-base.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'navresponse/css/okayNav-theme.css' %}" media="screen">
+	<!--[if IE]>
+		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+    <link href="{% static 'ModalWindowEffects/css/bootstrap-grid.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'hover/css/style.css' %}">
+    	<style type="text/css">
+		.demo{padding: 2em 0;background: #fff;}
+		.pricingTable{
+		    padding: 100px 0 3px;
+		    position: relative;
+		    transition: all 0.5s ease 0s;
+            background-color: #cccccc;
+		}
+		.pricingTable .title{
+		    width: 100%;
+		    padding: 10px 0;
+		    margin-top: -15px;
+		    background: #f7f2f0;
+		    border: 1px solid darkgrey;
+		    font-size: 22px;
+		    font-weight: 800;
+		    color: #25283d;
+		    position: absolute;
+		    top: 30px;
+		    left: -15px;
+		    transition: all 0.5s ease 0s;
+		}
+        .pricingTable .title{
+            border: 1px solid darkgrey;
+        }
+		.pricingTable .title:after{
+		    content: "";
+		    border-top: 15px solid darkgrey;
+		    border-left: 15px solid transparent;
+		    border-bottom: 15px solid transparent;
+		    position: absolute;
+		    bottom: -30px;
+		    left: -1px;
+		    transition: all 0.5s ease 0s;
+		}
+		.pricingTable .title:after{ border-top: 15px solid darkgrey; }
+		.pricingTable .price-value{
+		    font-size: 50px;
+		    color: #25283d;
+		    margin-bottom: 11px;
+		}
+		.pricingTable .month{
+		    display: inline-block;
+		    font-size: 14px;
+		    color: #bb69a2;
+		}
+		.pricingTable .pricing-content{
+		    list-style: none;
+		    padding: 0;
+		}
+		.pricingTable .pricing-content li{
+		    font-size: 15px;
+		    color: black;
+		    line-height: 28px;
+		    border-bottom: 1px solid darkgray;
+            padding: .8em 2.4em;
+        }
+		.pricingTable .pricing-content li:first-child{ border-top: 1px solid darkgray; }
+
+		@media only screen and (max-width: 990px){
+		    .pricingTable{ margin-bottom: 30px; }
+		}
+        .circular--landscape{
+            display: inline-block;
+            position: relative;
+            width: 110px;
+            height: 110px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin: -3% 10% 3% 7%;
+        ;
+        }
+        .circular--landscape img{
+            width: auto;
+            height: 100%;
+        }
+        .actdetails span{
+            font-style: italic;
+        }
+        canvas:hover{
+            width: 129px;
+            height: 129px;
+        }
+        span.active{
+            color: #f73f52;
+        }
+        span.active2{
+            color: #f73f52;
+        }
+	</style>
+
+	<script src="{% static 'ModalWindowEffects/js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'ModalWindowEffects/js/jquery.qrcode.min.js' %}"></script>
+    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+
+</head>
+<body>
+{% for act in activities %}
+    <div class="md-modal md-effect-1" id="modal-{{ act.id }}">
+        <div class="md-content">
+            <div style="width: 100%">
+                <div class="pricingTable">
+                    <h3 class="title" style="text-align: center" id="act_name">{{ act.short_name }}</h3>
+                    <div>
+                        <div  class="circular--landscape" style="display:inline-block;vertical-align: middle">
+                            <img src="{{ act.group_name.img.url }}" style="max-height: 150px" id="group_img">
+                        </div>
+                        <span style="font-size: 12px" id="act_pub">Pub：{{ act.pub_date|date:"H:i  F d" }}</span>
+                    </div>
+                    <ul class="pricing-content">
+                        <li class="desctext" id="act_desc">{{ act.desc }}</li>
+                        <li class="actdetails" style="text-align: center">
+                            <span id="act_begin"> 时间：{{ act.begin|date:"H:i， d M" }}</span><br>
+                            <span id="act_location"> 地点：{{ act.location }}</span><br>
+                            <span id="group_name">举办者：<a href="{% url 'miunottingham:group_acts' act.group_name.id %}">{{ act.group_name.group_name }}</a></span>
+                        </li>
+                    </ul>
+                    <div style="text-align: center;margin-top: 8px">
+                        <div id="code-{{ act.id }}"></div>
+                        <script>
+                            $('#code-{{ act.id }}').qrcode({
+                               render: 'canvas',
+                               width: 60,
+                               height: 60,
+                               text: "{{ act.links }}",
+                            });
+                        </script>
+                        <span style="font-size: 9px">微信扫描二维码跳转至公众号或推文</span>
+                    </div>
+                </div>
+            </div>
+            <button class="md-close"style="display: none">Close me!</button>
+        </div>
+</div>
+{% endfor %}
+<div class="modal fade" id="login_modal" tabindex="-10" role="dialog" >
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+     <form class='form-signin' action="" method="post" id="login_medal_form">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">登录</h4>
+      </div>
+      <div class="modal-body">
+                  {% csrf_token %}
+                  {% for field in form %}
+                      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                      {{ field }}
+                  {% endfor %}
+                <span id="login_medal_tip" class="text-danger"></span>
+              <a href="{% url 'accounts:pswforget' %} " class="pull-right">forget password?</a>
+      </div>
+      <div class="modal-footer" style="margin-top: 10px">
+        <button type="submit" class="btn btn-primary">登录</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+<nav style="text-align: center">
+		<ul class="cd-primary-nav">
+			<li><a href="{% url 'miunottingham:main_page' %}">Home</a></li>
+			<li><a href="{% url 'accounts:cover_page' %}">About Miunottingham</a></li>
+            <li><a href="{% url 'miunottingham:groups' %}">Registered Groups</a></li>
+            {% if request.session.is_login %}
+                <li><a href="{% url 'accounts:userinfo'%}"> {{ request.session.user_name }}</a></li>
+                <li><a href="{% url 'accounts:logout' %}?from={{ request.get_full_path }}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'accounts:login_test'%}?from={{ request.get_full_path }}">Login</a></li>
+                <l1><a href="{% url 'accounts:register' %}">Sign up</a></l1>
+            {% endif %}
+		</ul>
+	</nav>
+<header id="header" class="okayNav-header">
+<a class="cd-nav-trigger">Menu<span class="cd-icon" style="z-index: 99999999;font-weight: bold"></span></a>
+    <img src="{% static 'img/Mlogo.png' %}" style="max-height: 100%;margin-left: 48%">
+	    <nav role="navigation" id="nav-main" class="okayNav">
+	    </nav>
+	</header><!-- /header -->
+
+<section class="jarallax" style="background-image: url('{{ group.img.url }}');">
+			<div class="container">
+				<div class="aligner">
+					<div class="aligner-item page-title">
+						<h3 style="color:#dbdbdb;">Welcome to</h3>
+                        <h2 style="text-transform: initial; color: #dbdbdb">{{ group_name }}</h2>
+					</div>
+				</div>
+			</div>
+		</section>
+{#modal finished#}
+    <main style="margin-top: 2em">
+		<!-- your content here -->
+         <div class="container">
+		    <!-- Team members structure start -->
+		    	<div class="team-members row">
+		            <!-- effect-5 html -->
+		           {% for act in activities %}
+                        <div class="single-member effect-3">
+		            	<div class="member-image">
+		                	<img src="{{ act.img.url }}" alt="{{ act.short_name }}">
+		                </div>
+                            <div class="member-info">
+                                <div style="border-top: 1px solid black;border-bottom: 1px solid black;margin-bottom: 2px">
+                                    <h3 style="color:black;">{{ act.short_name }}</h3>
+                                    <h5 style="color:#000;">{{ act.begin|date:"j  N"}}</h5>
+                                </div>
+		                    <p style="font-size: 14px;color: dimgrey">{{ act.desc }}</p>
+                                      <div class="social-touch icon-colored">
+                                          <div class="md-trigger" data-modal="modal-{{ act.id }}" style="width: 32px;margin-left: 124px;cursor: pointer">
+                                              <span class="linkedin-touch" ></span>
+                                          </div>
+                                      </div>
+		                     <div class="social-touch icon-colored">
+		                    	<div style="text-align: center;display: inline-block;cursor: pointer" class="par" onclick="ParChange(this, {{ act.id }})">
+                                    <div>
+                                        <span class="fb-touch"></span>
+                                    </div>
+                                    <div style="margin-top: 0">
+                                        <span class="par_num {% get_par_status act user authenticated %}">{% get_par_count act %}</span>
+                                    </div>
+                                </div>
+                                 <div style="text-align: center;display: inline-block;cursor: pointer" class="like" onclick="LikeChange(this, {{ act.id }})">
+                                     <div class="par">
+                                         <span class="tweet-touch"></span>
+                                     </div>
+                                     <div style="margin-top: 0">
+                                         <span class="liked_num {% get_like_status user authenticated act %}">{% get_like_count act %}</span>
+                                     </div>
+                                 </div>
+		                    </div>
+		                </div>
+		            </div>
+                    {% endfor %}
+		            <!-- effect-5 html end -->
+		        </div>
+		    <!-- Team members structure start -->
+		    </div>
+	</main> <!-- cd-content -->
+<div class="md-overlay"></div>
+	<div class="cd-overlay-nav">
+		<span></span>
+	</div> <!-- cd-overlay-nav -->
+
+	<div class="cd-overlay-content">
+		<span></span>
+	</div> <!-- cd-overlay-content -->
+<script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+<script src="{% static 'navresponse/js/jquery.okayNav.js' %}"></script>
+<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript">
+        var navigation = $('#nav-main').okayNav();
+    	</script>
+<script src="{% static 'menu/js/velocity.min.js' %}"></script>
+<script src="{% static 'menu/js/main.js' %}"></script>
+<script>
+
+			// this is important for IEs
+
+			var polyfilter_scriptpath = '/js/';
+
+		</script>
+<script src="{% static 'ModalWindowEffects/js/classie.js' %}"></script>
+    <script src="{% static 'ModalWindowEffects/js/modalEffects.js' %}"></script>
+    <script src="{% static 'ModalWindowEffects/js/cssParser.js' %}"></script>
+    <script src="{% static 'ModalWindowEffects/js/css-filters-polyfill.js' %}"></script>
+<script>
+    function LikeChange(obj, act_id) {
+        var is_like = obj.getElementsByClassName('active').length == 0
+        $.ajax({
+            url:"{% url 'like_change' %}",
+            type:'GET',
+            data:{
+                act_id: act_id,
+                is_like:is_like,
+            },
+            cache:false,
+            success:function (data) {
+                console.log(data)
+                if (data['status']=='SUCCESS'){
+                    var span = $(obj.getElementsByClassName('liked_num'));
+                    if(is_like){
+                        span.addClass('active');
+                    }else {span.removeClass('active');}
+                    span.text(data['liked_num']);
+            }
+                else {
+                    if(data['code']==400){
+                        $('#login_modal').modal('show');
+                    }else {
+                        alert(data['message']);
+                        }
+                }
+            },
+            error:function (xhr) {
+                console.log(xhr)
+            }
+        });
+    }
+    function ParChange(obj, act_id) {
+        var is_par = obj.getElementsByClassName('active2').length == 0
+        $.ajax({
+            url:"{% url 'par_change' %}",
+            type:'GET',
+            data:{
+                act_id: act_id,
+                is_par:is_par,
+            },
+            cache:false,
+            success:function (data) {
+                console.log(data)
+                if (data['status']=='SUCCESS'){
+                    var span = $(obj.getElementsByClassName('par_num'));
+                    if(is_par){
+                        span.addClass('active2');
+                    }else {span.removeClass('active2');}
+                    span.text(data['par_num']);
+            }
+              else {
+                    if(data['code']==400){
+                        $('#login_modal').modal('show');
+                    }else {
+                        alert(data['message']);
+                        }
+                }
+            },
+            error:function (xhr) {
+                console.log(xhr)
+            }
+        });
+    }
+    $('#login_medal_form').submit(function (){
+        $.ajax({
+            url: "{% url 'accounts:login_for_medal' %}",
+            type: 'POST',
+            data: $(this).serialize(),
+            cache: false ,
+            success: function (data) {
+                if(data['status']=='SUCCESS'){
+                    window.location.reload();
+                }else {
+                    $('#login_medal_tip').text('账号或密码错误');
+                }
+            }
+        });
+        return false;
+    });
+</script>
+</body>
+</html>

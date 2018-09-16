@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}CCM{% endblock %}</title>
+    <script src="{% static 'ModalWindowEffects/js/jquery-3.2.1.js' %}"></script>
+<link href="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}">
+{% block highestcss %}{% endblock %}
+    <link rel="shortcut icon" href="{% static 'waterfull/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+<link rel="stylesheet" href="{% static 'menu/css/style.css' %}">
+	{% block css %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'menu/css/reset.css' %}"> <!-- CSS reset -->
+	<!-- Resource style -->
+	<script src="{% static 'menu/js/modernizr.js' %}"></script> <!-- Modernizr -->
+    <link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/default.css' %}" />
+
+		<link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/component.css' %}" />
+    	<link rel="stylesheet" href="{% static 'navresponse/css/normalize.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'navresponse/css/basic-styles.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'navresponse/css/header.css' %}" media="screen">
+   	<link rel="stylesheet" href="{% static 'navresponse/css/okayNav-base.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'navresponse/css/okayNav-theme.css' %}" media="screen">
+<!--[if IE]>
+		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+<link rel="stylesheet" type="text/css" href="{% static 'hover/css/style.css' %}">
+{% block csshigher %}{% endblock %}
+<style>
+    .cd-primary-nav li a{
+        color: #222222;!important;
+    }
+    .cd-primary-nav li a:hover{
+        color: whitesmoke;
+    }
+    #signupcustom{
+        color: #222222;
+    }
+    #signupcustom:hover{
+        color: whitesmoke;
+    }
+    body{
+        background-color: {% block bodybg %}{% endblock %};
+    }
+</style>
+</head>
+<body>
+<nav style="text-align: center">
+		<ul class="cd-primary-nav">
+			<li><a href="{% url 'miunottingham:main_page' %}">Home</a></li>
+			<li><a href="{% url 'accounts:cover_page' %}">About Miunottingham</a></li>
+            <li><a href="{% url 'miunottingham:groups' %}">Registered Groups</a></li>
+            {% if request.session.is_login %}
+                <li><a href="{% url 'accounts:userinfo'%}"> {{ request.session.user_name }}</a></li>
+                <li><a href="{% url 'accounts:logout' %}?from={{ request.get_full_path }}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'accounts:login_test' %}?from={{ request.get_full_path }}">Login</a></li>
+                <l1><a href="{% url 'accounts:register' %}" id="signupcustom">Sign up</a></l1>
+            {% endif %}
+		</ul>
+	</nav>
+<header id="header" class="okayNav-header">
+<a class="cd-nav-trigger">Menu<span class="cd-icon" style="z-index: 99999999;font-weight: bold"></span></a>
+    <img src="{% static 'img/Mlogo.png' %}" style="max-height: 100%;margin-left: 48%">
+	    <nav role="navigation" id="nav-main" class="okayNav">
+
+	    </nav>
+	</header><!-- /header -->
+    {% block content %}{% endblock %}
+
+<div class="md-overlay"></div>
+	<div class="cd-overlay-nav">
+		<span></span>
+	</div> <!-- cd-overlay-nav -->
+
+	<div class="cd-overlay-content">
+		<span></span>
+	</div> <!-- cd-overlay-content -->
+<script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="{% static 'navresponse/js/jquery.okayNav.js' %}"></script>
+<script type="text/javascript">
+        var navigation = $('#nav-main').okayNav();
+    	</script>
+<script src="{% static 'menu/js/velocity.min.js' %}"></script>
+<script src="{% static 'menu/js/main.js' %}"></script>
+<script>
+
+			// this is important for IEs
+
+			var polyfilter_scriptpath = '/js/';
+
+</script>
+{% block jshigher %}{% endblock %}
+</body>
+</html>
