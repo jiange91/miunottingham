@@ -165,7 +165,7 @@ def register(request):
                 # send_email(email, code, new_user.username)
                 # message = 'Please activate your account through email confirmation'
                 # return render(request, 'miunottingham/confirm.html', locals())
-            return render(request, 'accounts/login_test.html')
+            return render(request, 'accounts/maotouying_test.html')
     form = RegisterForm()
     return render(request, 'accounts/register.html', locals())
 

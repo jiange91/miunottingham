@@ -15,22 +15,25 @@ def hash_code(s, salt='confirm'):
 
 class LoginForm(forms.Form):
     email = forms.CharField(label="", max_length=128,required=True,
-                               widget=forms.EmailInput(attrs={'id':'email', 'class': 'form-control input-medium','placeholder':'Email'}))
+                               widget=forms.TextInput(attrs={'id':'email', 'class': 'form-control input-medium','placeholder':'用户名或邮箱'}))
     password = forms.CharField(label="", max_length=256,
-                               widget=forms.PasswordInput(attrs={'id':'password', 'class': 'form-control input-medium','placeholder':'Password'}))
+                               widget=forms.PasswordInput(attrs={'id':'password', 'class': 'form-control input-medium','placeholder':'密码'}))
 
     def clean(self):
-        email = self.cleaned_data['email']
+        accounts = self.cleaned_data['email']
         password = self.cleaned_data['password']
         password = hash_code(password)
-        try:
-            user = User.objects.get(email=email)
-            if not user.has_confirmed:
-                message = 'Your account is not activated yet, please check your email and find the link'
+        if User.objects.filter(email=accounts):
+            user = User.objects.get(email=accounts)
+        else:
+            if User.objects.filter(username=accounts):
+                user = User.objects.get(username=accounts)
+            else:
+                message = '无效账户'
                 self.cleaned_data['message'] = message
                 return self.cleaned_data
             if not user.password == password:
-                message = 'Wrong password'
+                message = '密码错误'
                 self.cleaned_data['message'] = message
                 return self.cleaned_data
             else:
@@ -38,24 +41,20 @@ class LoginForm(forms.Form):
                 message = 'Login successful'
                 self.cleaned_data['message'] = message
                 return self.cleaned_data
-        except ObjectDoesNotExist:
-            message = 'Invalid account'
-            self.cleaned_data['message'] = message
-            return self.cleaned_data
 
 
 class RegisterForm(forms.Form):
     username = forms.CharField(label='', max_length=128, widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'username'}
+        attrs={'class': 'form-control', 'placeholder': '用户名'}
     ))
     password1 = forms.CharField(label='', max_length=256, widget=forms.PasswordInput(
-        attrs={'class':'form-control', 'placeholder':'password'}
+        attrs={'class':'form-control', 'placeholder':'密码（别挑战你的记忆力了）'}
     ))
     password2 = forms.CharField(label='', max_length=256, widget=forms.PasswordInput(
-        attrs={'class':'form-control', 'placeholder':'password confirm'}
+        attrs={'class':'form-control', 'placeholder':'请重复密码'}
     ))
     email = forms.EmailField(label='', widget=forms.EmailInput(
-        attrs={'class':'form-control', 'placeholder':'Email'}
+        attrs={'class':'form-control', 'placeholder':'邮箱'}
     ))
 
 

@@ -173,7 +173,7 @@
                 <li><a href="{% url 'accounts:userinfo'%}"> {{ request.session.user_name }}</a></li>
                 <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
             {% else %}
-                <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                <li><a href="{% url 'accounts:login_test' %}">Login</a></li>
                 <l1><a href="{% url 'accounts:register' %}">Sign up</a></l1>
             {% endif %}
 		</ul>
