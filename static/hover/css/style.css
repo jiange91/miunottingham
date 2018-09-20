@@ -4,11 +4,11 @@ body{ font-family: Lato,'Open Sans', sans-sarif; font-size: 16px; background-col
 .row{width: 103%; float: left; margin: 0 1%;}
 
 /*= common css to all effects =*/
-.single-member{width: 280px; float: left; margin: 30px 2.5%; background-color: #fff; text-align: center; position: relative;}
+.single-member{width: 280px; float: left; margin: 30px 2.5%; background-color: #333333; text-align: center; position: relative;}
 .member-image img{max-width: 100%;max-height: 100%; vertical-align: middle;}
 h3 {font-size: 17px; font-weight: normal; margin: 10px 0 5px; text-transform:none}
 h5 {font-size: 19px; font-weight: 300; margin: 0 0 15px; line-height: 22px;}
-p {font-size: 14px; font-weight: 300; line-height: 22px; padding: 0 20px; margin-bottom: 3px;}
+p {font-size: 14px; font-weight: 300; line-height: 22px; padding: 0 20px; margin-bottom: 14px;}
 .social-touch span{display: inline-block; width: 27px; height: 26px; vertical-align: middle; margin: 2px 2px; background-image: url(../images/cusicons.png); background-repeat: no-repeat; opacity: 0.7; transition: 0.3s;}
 .social-touch span:hover{opacity: 1; transition: 0.3s;}
 .fb-touch{background-position: 0 0;}

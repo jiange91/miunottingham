@@ -103,7 +103,6 @@
         .circular--landscape img{
             width: auto;
             height: 100%;
-            margin-left: -35%;
         }
         .actdetails span{
             font-style: italic;
@@ -112,14 +111,24 @@
             width: 129px;
             height: 129px;
         }
-        span.active{
-            color: #f73f52;
+        span.par_num{
+            color: whitesmoke;
+            margin-left: 5px;
+        }
+        span.glyphicon{
+            color: whitesmoke;
+            font-size: 23px;
         }
         span.active2{
             color: #f73f52;
         }
+       .md-trigger{
+           background-color: #333333;
+           color: whitesmoke;
+           border-radius:9%;
+           border: 1px solid whitesmoke
+       }
 	</style>
-
 	<script src="{% static 'ModalWindowEffects/js/jquery-3.2.1.js' %}"></script>
     <script src="{% static 'ModalWindowEffects/js/jquery.qrcode.min.js' %}"></script>
     <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
@@ -180,7 +189,9 @@
 	</nav>
 <header id="header" class="okayNav-header">
 <a class="cd-nav-trigger">Menu<span class="cd-icon" style="z-index: 99999999;font-weight: bold"></span></a>
-    <img src="{% static 'img/Mlogo.png' %}" style="max-height: 100%;margin-left: 48%">
+   <div class="imagecontainer" style="text-align: center;width: 100%;height: 100%">
+        <img src="{% static 'img/Mlogo.png' %}" style="max-height: 100%">
+   </div>
 	    <nav role="navigation" id="nav-main" class="okayNav">
 	    </nav>
 	</header><!-- /header -->
@@ -213,7 +224,7 @@
 {#modal finished#}
     <main>
 		<!-- your content here -->
-         <div class="container">
+         <div class="container" style="padding: 0">
 		    <!-- Team members structure start -->
 		    	<div class="team-members row">
 		            <!-- effect-5 html -->
@@ -223,34 +234,18 @@
 		                	<img src="{{ act.img.url }}" alt="{{ act.short_name }}">
 		                </div>
                             <div class="member-info">
-                                <div style="border-top: 1px solid black;border-bottom: 1px solid black;margin-bottom: 2px">
-                                    <h3 style="color:black;">{{ act.short_name }}</h3>
-                                    <h5 style="color:#000;">{{ act.begin|date:"j  N"}}</h5>
+                                <div style="border-top: 1px solid black;border-bottom: 1px solid black;margin-bottom: 2px;color: whitesmoke">
+                                    <h3>{{ act.short_name }}</h3>
+                                    <h5>{{ act.begin|date:"j  N"}}</h5>
                                 </div>
-		                    <p style="font-size: 14px;color: dimgrey">{{ act.desc }}</p>
-                                      <div class="social-touch icon-colored">
-                                          <div class="md-trigger" data-modal="modal-{{ act.id }}" style="width: 32px;margin-left: 124px;cursor: pointer">
-                                              <span class="linkedin-touch" ></span>
-                                          </div>
-                                      </div>
-		                     <div class="social-touch icon-colored">
-		                    	<div style="text-align: center;display: inline-block;cursor: pointer" class="par" onclick="ParChange(this, {{ act.id }})">
-                                    <div>
-                                        <span class="fb-touch"></span>
-                                    </div>
-                                    <div style="margin-top: 0">
+		                    <p style="font-size: 13px;color: darkgray;margin-top: 8px">{{ act.desc }}</p>
+                                <div style="display: inline-block;cursor: pointer;vertical-align: middle;margin-right: 4em" class="par" onclick="ParChange(this, {{ act.id }})">
+                                        <span class="glyphicon glyphicon-heart {% get_par_status act user authenticated %}"></span>
                                         <span class="par_num {% get_par_status act user authenticated %}">{% get_par_count act %}</span>
-                                    </div>
                                 </div>
-                                 <div style="text-align: center;display: inline-block;cursor: pointer" class="like" onclick="LikeChange(this, {{ act.id }})">
-                                     <div class="par">
-                                         <span class="tweet-touch"></span>
-                                     </div>
-                                     <div style="margin-top: 0">
-                                         <span class="liked_num {% get_like_status user authenticated act %}">{% get_like_count act %}</span>
-                                     </div>
-                                 </div>
-		                    </div>
+                                <div style="display: inline-block;margin-right: -2em">
+                                    <button class="md-trigger" data-modal="modal-{{ act.id }}">Enter</button>
+                                </div>
 		                </div>
 		            </div>
                     {% endfor %}
@@ -287,38 +282,6 @@
     <script src="{% static 'ModalWindowEffects/js/cssParser.js' %}"></script>
     <script src="{% static 'ModalWindowEffects/js/css-filters-polyfill.js' %}"></script>
 <script>
-    function LikeChange(obj, act_id) {
-        var is_like = obj.getElementsByClassName('active').length == 0
-        $.ajax({
-            url:"{% url 'like_change' %}",
-            type:'GET',
-            data:{
-                act_id: act_id,
-                is_like:is_like,
-            },
-            cache:false,
-            success:function (data) {
-                console.log(data)
-                if (data['status']=='SUCCESS'){
-                    var span = $(obj.getElementsByClassName('liked_num'));
-                    if(is_like){
-                        span.addClass('active');
-                    }else {span.removeClass('active');}
-                    span.text(data['liked_num']);
-            }
-                else {
-                    if(data['code']==400){
-                        $('#login_modal').modal('show');
-                    }else {
-                        alert(data['message']);
-                        }
-                }
-            },
-            error:function (xhr) {
-                console.log(xhr)
-            }
-        });
-    }
     function ParChange(obj, act_id) {
         var is_par = obj.getElementsByClassName('active2').length == 0
         $.ajax({
@@ -333,9 +296,12 @@
                 console.log(data)
                 if (data['status']=='SUCCESS'){
                     var span = $(obj.getElementsByClassName('par_num'));
+                    var heart= $(obj.getElementsByClassName('glyphicon'));
                     if(is_par){
                         span.addClass('active2');
-                    }else {span.removeClass('active2');}
+                        heart.addClass('active2');
+                    }else {span.removeClass('active2');
+                    heart.removeClass('active2');}
                     span.text(data['par_num']);
             }
               else {
