@@ -120,13 +120,13 @@
                             链接： <a href="{{ activity.links }}" style="color: lightgrey;">{{ activity.links }}</a>
                         </div><br>
                         <div class="containercustomer">
-                        <div class="like" onclick="LikeChange(this, {{ activity.id }})">
-                            <span class="dianzan glyphicon glyphicon-heart {% get_like_status  user authenticated activity %}" ></span>
-                            <span class="liked_num {% get_like_status  user authenticated activity %}">{% get_like_count activity %}</span>
-                            <span></span>
-                        </div>
+{#                        <div class="like" onclick="LikeChange(this, {{ activity.id }})">#}
+{#                            <span class="dianzan glyphicon glyphicon-heart {% get_like_status  user authenticated activity %}" ></span>#}
+{#                            <span class="liked_num {% get_like_status  user authenticated activity %}">{% get_like_count activity %}</span>#}
+{#                            <span></span>#}
+{#                        </div>#}
                         <div class="par" onclick="ParChange(this, {{ activity.id }})">
-                            <span class="canjia glyphicon glyphicon-flag {% get_par_status activity user authenticated %}" ></span>
+                            <span class="canjia glyphicon glyphicon-heart {% get_par_status activity user authenticated %}" ></span>
                             <span class="par_num {% get_par_status activity user authenticated %}">{% get_par_count activity %}</span>
                             <span></span>
                         </div>
