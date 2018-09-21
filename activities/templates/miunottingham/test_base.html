@@ -29,10 +29,11 @@
 {% block csshigher %}{% endblock %}
 <style>
     .cd-primary-nav li a{
-        color: #222222;!important;
+        color: darkgrey;!important;
     }
     .cd-primary-nav li a:hover{
         color: whitesmoke;
+        text-decoration: none;
     }
     #signupcustom{
         color: #222222;
@@ -48,6 +49,7 @@
 <body>
 <nav style="text-align: center">
 		<ul class="cd-primary-nav">
+        <li style="margin-top: 10%"></li>
 			<li><a href="{% url 'miunottingham:main_page' %}">Home</a></li>
 			<li><a href="{% url 'accounts:cover_page' %}">About Miunottingham</a></li>
             <li><a href="{% url 'miunottingham:groups' %}">Registered Groups</a></li>
