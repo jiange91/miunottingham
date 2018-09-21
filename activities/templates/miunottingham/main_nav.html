@@ -34,7 +34,7 @@
 		    padding: 100px 0 3px;
 		    position: relative;
 		    transition: all 0.5s ease 0s;
-            background-color: #cccccc;
+            background-color: darkgrey;
 		}
 		.pricingTable .title{
 		    width: 100%;
@@ -82,10 +82,15 @@
 		    font-size: 15px;
 		    color: black;
 		    line-height: 28px;
-		    border-bottom: 1px solid darkgray;
+		    border-bottom: 1px solid #888888;
             padding: .8em 2.4em;
         }
-		.pricingTable .pricing-content li:first-child{ border-top: 1px solid darkgray; }
+		.pricingTable .pricing-content li:first-child{
+            border-top: 1px solid #888888;
+            margin-top: 1em;
+            padding-top: 1.8em;
+            padding-bottom: 1.8em;
+        }
 
 		@media only screen and (max-width: 990px){
 		    .pricingTable{ margin-bottom: 30px; }
@@ -104,7 +109,7 @@
             width: auto;
             height: 100%;
         }
-        .actdetails span{
+        span#act_begin, span#act_location, span#group_name{
             font-style: italic;
         }
         canvas:hover{
@@ -123,11 +128,20 @@
             color: #f73f52;
         }
        .md-trigger{
-           background-color: #333333;
+           background-color: #222222;
            color: whitesmoke;
            border-radius:9%;
            border: 1px solid whitesmoke
        }
+            a:hover{
+                text-decoration: none;
+            }
+            span#group_name a{
+                color: black;
+            }
+            span#group_name a:hover{
+                color: whitesmoke;
+            }
 	</style>
 	<script src="{% static 'ModalWindowEffects/js/jquery-3.2.1.js' %}"></script>
     <script src="{% static 'ModalWindowEffects/js/jquery.qrcode.min.js' %}"></script>
@@ -150,12 +164,13 @@
                     <ul class="pricing-content">
                         <li class="desctext" id="act_desc">{{ act.desc }}</li>
                         <li class="actdetails" style="text-align: center">
-                            <span id="act_begin"> 时间：{{ act.begin|date:"H:i， d M" }}</span><br>
-                            <span id="act_location"> 地点：{{ act.location }}</span><br>
-                            <span id="group_name">举办者：<a href="{% url 'miunottingham:group_acts' act.group_name.id %}">{{ act.group_name.group_name }}</a></span>
+                            <span> 时间：<span id="act_begin">{{ act.begin|date:"H:i， d M" }}</span></span><br>
+                            <span>地点：<span id="act_location">{{ act.location }}</span></span><br>
+                            <span>举办者：<span id="group_name"><a href="{% url 'miunottingham:group_acts' act.group_name.id %}">{{ act.group_name.group_name }}</a></span></span>
+                            <p class="glyphicon glyphicon-home" style="margin-left: 6px;font-size: 12px;color: gray"></p>
                         </li>
                     </ul>
-                    <div style="text-align: center;margin-top: 8px">
+                    <div style="text-align: center;margin:17px">
                         <div id="code-{{ act.id }}"></div>
                         <script>
                             $('#code-{{ act.id }}').qrcode({
@@ -175,7 +190,8 @@
 {% endfor %}
 <nav style="text-align: center">
 		<ul class="cd-primary-nav">
-			<li><a href="{% url 'miunottingham:main_page' %}">Home</a></li>
+        <li style="margin-top: 10%"></li>
+                <li><a href="{% url 'miunottingham:main_page' %}">Home</a></li>
 			<li><a href="{% url 'accounts:cover_page' %}">About Miunottingham</a></li>
             <li><a href="{% url 'miunottingham:groups' %}">Registered Groups</a></li>
             {% if request.session.is_login %}
@@ -185,6 +201,7 @@
                 <li><a href="{% url 'accounts:login_test' %}">Login</a></li>
                 <l1><a href="{% url 'accounts:register' %}">Sign up</a></l1>
             {% endif %}
+
 		</ul>
 	</nav>
 <header id="header" class="okayNav-header">
@@ -234,12 +251,12 @@
 		                	<img src="{{ act.img.url }}" alt="{{ act.short_name }}">
 		                </div>
                             <div class="member-info">
-                                <div style="border-top: 1px solid black;border-bottom: 1px solid black;margin-bottom: 2px;color: whitesmoke">
+                                <div style="border-top: 1px solid #333333;border-bottom: 1px solid #333333;margin-bottom: 2px;color: whitesmoke">
                                     <h3>{{ act.short_name }}</h3>
                                     <h5>{{ act.begin|date:"j  N"}}</h5>
                                 </div>
 		                    <p style="font-size: 13px;color: darkgray;margin-top: 8px">{{ act.desc }}</p>
-                                <div style="display: inline-block;cursor: pointer;vertical-align: middle;margin-right: 4em" class="par" onclick="ParChange(this, {{ act.id }})">
+                                <div style="display: inline-block;cursor: pointer;vertical-align: middle;margin-right: 5em;margin-left: -1em" class="par" onclick="ParChange(this, {{ act.id }})">
                                         <span class="glyphicon glyphicon-heart {% get_par_status act user authenticated %}"></span>
                                         <span class="par_num {% get_par_status act user authenticated %}">{% get_par_count act %}</span>
                                 </div>

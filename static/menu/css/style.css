@@ -24,7 +24,7 @@ body {
 }
 
 a {
-  color: #1e6074;
+  color: darkgray;
   text-decoration: none;
 }
 a:hover{
@@ -220,7 +220,7 @@ header {
   width: 100%;
   padding: 80px 5%;
   z-index: 3;
-  background-color: #ffb441;
+  background-color: #111111;
   overflow: auto;
   /* this fixes the buggy scrolling on webkit browsers - mobile devices only - when overflow property is applied */
   -webkit-overflow-scrolling: touch;
@@ -254,7 +254,7 @@ header {
 }
 @media only screen and (min-width: 768px) {
   .cd-primary-nav li {
-    margin: 2em 0;
+    margin: 3em 0;
   }
   .cd-primary-nav a {
     font-size: 28px;
@@ -263,7 +263,7 @@ header {
 }
 @media only screen and (min-width: 1170px) {
   .cd-primary-nav li {
-    margin: 3em 0;
+    margin: 4em 0;
   }
   .cd-primary-nav a {
     font-size: 32px;
@@ -321,7 +321,7 @@ header {
   z-index: 2;
 }
 .cd-overlay-nav span {
-  background-color:#ffb441;
+  background-color:#111111;
 }
 
 .cd-overlay-content {
@@ -329,7 +329,7 @@ header {
   z-index: 4;
 }
 .cd-overlay-content span {
-  background-color: #091d23;
+  background-color: #1F1F1F;
 }
 
 .cd-content {
