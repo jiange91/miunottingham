@@ -56,7 +56,7 @@ def send_group_email(email, code, username, user_id, group_name):
 
 
 def main_page(request):
-    activities = Activities.objects.order_by("-pub_date", "-begin")
+    activities = Activities.objects.order_by("-begin", "-pub_date")
     authenticated = request.session.get('is_login')
     form = LoginForm()
     if authenticated:
