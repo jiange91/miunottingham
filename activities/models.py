@@ -11,6 +11,7 @@ class Groups(models.Model):
     mod_time = models.DateTimeField(auto_now=True)
     img = models.ImageField(upload_to='avatar')
     has_confirmed = models.BooleanField(default=False)
+    permitted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.group_name

@@ -40,6 +40,20 @@
         display: inline-block;
         vertical-align: top;
     }
+    .UserActOption:hover{
+        color: #a6bcd0;
+        text-decoration: none;
+    }
+    .UserActOption{
+        color: #ffffff;
+        text-decoration: none;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+    }
+    #UserActOptDiv{
+        margin-top: 1em;
+        display: block;
+    }
     </style>
 {% endblock %}
 
@@ -72,13 +86,16 @@
               <br>
            <a href="{% url 'accounts:pswchange_request'%}" class="btncpw">Change your password</a>
           </form>
-{#        {% if isgroup %}#}
-{#            <p>Your registered group: {{ group_name }}</p>#}
-{#            <a href="{% url 'miunottingham:group_acts' group.id %}">View your activities</a>#}
-{#        {% else %}#}
-{#            <a href="{% url 'miunottingham:new_group' userid %}">Register your group</a>#}
-{#        {% endif %}#}
-        <a href="#" onclick="return confirm('此功能在赶来的路上')" style="color: whitesmoke">Register your group</a>
+        {% if isgroup %}
+            <div style="margin-top: 14px;color: white;display: inline-block">Your registered group:</div>
+            <p style="color: white;font-weight: bold;display: inline-block; font-size: 100%; padding-left: 0px;padding-right: 0px;">{{ group_name }}</p>
+            <div id="UserActOptDiv">
+                <a class="UserActOption" href="{% url 'miunottingham:group_acts' group.id %}">查看你发布的活动</a>
+                <a class="UserActOption" href="{% url 'miunottingham:new_activity' group.id %}">发布新活动</a>
+            </div>
+        {% else %}
+            <a href="#" onclick="return confirm('请直接联系BOOMBOOM:4008823823')" style="color: whitesmoke">申请登记为活动发布者</a>
+        {% endif %}
         </div>
     <div class="likeandpar">
         <div id="pars">

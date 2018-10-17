@@ -63,7 +63,6 @@ def index(request):
 def login_test(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
-
         if form.is_valid():
             message = form.cleaned_data['message']
             referer = request.META.get('HTTP_REFERER',reverse('miunottingham:main_page'))
@@ -136,12 +135,12 @@ def register(request):
     if request.session.get('is_login'):
         return HttpResponseRedirect(reverse('miunottingham:main_page'))
     if request.method == "POST":
-            form = RegisterForm(request.POST)
-            if form.is_valid():
-                username = form.cleaned_data['username']
-                password1 = form.cleaned_data['password1']
-                password2 = form.cleaned_data['password2']
-                email = form.cleaned_data['email']
+            regform = RegisterForm(request.POST)
+            if regform.is_valid():
+                username = regform.cleaned_data['username']
+                password1 = regform.cleaned_data['password1']
+                password2 = regform.cleaned_data['password2']
+                email = regform.cleaned_data['email']
                 if User.objects.filter(username=username):
                     message = 'username already exists'
                     return render(request, 'accounts/register.html', locals())
@@ -160,12 +159,7 @@ def register(request):
                 new_user.email = email
                 new_user.has_confirmed = True
                 new_user.save()
-
-                # code = make_confirm_string(new_user)
-                # send_email(email, code, new_user.username)
-                # message = 'Please activate your account through email confirmation'
-                # return render(request, 'miunottingham/confirm.html', locals())
-            return HttpResponseRedirect(reverse('accounts:login_test'))
+                return HttpResponseRedirect(reverse('accounts:login_test'))
     form = RegisterForm()
     return render(request, 'accounts/register.html', locals())
 
@@ -200,12 +194,12 @@ def userinfo(request):
     user = User.objects.get(id=user_id)
     likes = user.likerecord_set.all()
     pars = user.parrecord_set.all()
-    # if user.groups_set.filter(user_id=userid):
-    #     group = user.groups_set.get(user_id=userid)
-    #     isgroup = group.has_confirmed
-    #     group_name = group.group_name
-    # else:
-    #     isgroup = False
+    if user.groups_set.filter(user_id=user_id):
+        group = user.groups_set.get(user_id=user_id)
+        isgroup = group.permitted
+        group_name = group.group_name
+    else:
+        isgroup = False
     if request.method != 'POST':
         form = UserForm(instance=user)
     else:
