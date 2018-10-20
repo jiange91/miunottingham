@@ -30,6 +30,7 @@ class Activities(models.Model):
     pub_date = models.DateTimeField(default=timezone.now)
     mod_date = models.DateTimeField(auto_now=True)
     begin = models.DateTimeField('start date')
+    end = models.DateTimeField(default=timezone.now)
     desc = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
     def __str__(self):
