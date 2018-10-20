@@ -11,6 +11,7 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render
 from accounts.forms import LoginForm
+from django.core.paginator import Paginator
 
 
 def success(likecount):
@@ -56,13 +57,32 @@ def send_group_email(email, code, username, user_id, group_name):
 
 
 def main_page(request):
-    activities = Activities.objects.order_by("-begin", "-pub_date")
+
+    page_num = request.GET.get('page', 1)
+    acts_list = Activities.objects.all()
+    paginator = Paginator(acts_list, 9)
+    page_range = paginator.page_range
+    actspage = paginator.get_page(page_num)
+    activities = actspage.object_list
+    current = actspage.number
+    displayrange = list(range(max(current-2, 1), current)) + list(range(current, min(current+2, paginator.num_pages)))
+    # 加省略号
+    if displayrange[0] - 1 >= 2:
+        displayrange.insert(0, "...")
+    if paginator.num_pages - displayrange[-1] >= 2:
+        displayrange.append("...")
+        # 加最前最后页链接
+    if displayrange[0] != 1:
+        displayrange.insert(0, 1)
+    if displayrange[-1] != paginator.num_pages:
+        displayrange.append(paginator.num_pages)
+
     authenticated = request.session.get('is_login')
     form = LoginForm()
     if authenticated:
         id = request.session.get('user_id')
         user = User.objects.get(id=id)
-    return render(request, 'miunottingham/main_nav.html', locals())
+    return render(request, 'miunottingham/main_page.html', locals())
 
 
 def groups(request):
@@ -73,8 +93,27 @@ def groups(request):
 
 def group_acts(request, group_id):
     group = get_object_or_404(Groups, id=group_id)
-    activities = group.activities_set.all()
+    page_num = request.GET.get('page', 1)
+    acts_list = group.activities_set.all()
+    paginator = Paginator(acts_list, 9)
+    page_range = paginator.page_range
+    actspage = paginator.get_page(page_num)
+    activities = actspage.object_list
     group_name = group.group_name
+    current = actspage.number
+    displayrange = [x for x in range(current - 2, current + 2)
+                    if 0 < x <= paginator.num_pages]
+    # 加省略号
+    if displayrange[0] - 1 >= 2:
+        displayrange.insert(0, "...")
+    if paginator.num_pages - displayrange[-1] >= 2:
+        displayrange.append("...")
+        # 加最前最后页链接
+    if displayrange[0] != 1:
+        displayrange.insert(0, 1)
+    if displayrange[-1] != paginator.num_pages:
+        displayrange.append(paginator.num_pages)
+
     authenticated = request.session.get('is_login')
     form = LoginForm()
     if authenticated:

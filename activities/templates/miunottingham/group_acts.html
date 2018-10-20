@@ -174,16 +174,18 @@
                         </li>
                     </ul>
                     <div style="text-align: center;margin:17px">
-                        <div id="code-{{ act.id }}"></div>
-                        <script>
-                            $('#code-{{ act.id }}').qrcode({
-                               render: 'canvas',
-                               width: 60,
-                               height: 60,
-                               text: "{{ act.links }}",
-                            });
-                        </script>
-                        <span style="font-size: 9px">微信扫描二维码跳转至公众号或推文</span>
+{#                        <div id="code-{{ act.id }}"></div>#}
+{#                        <script>#}
+{#                            $('#code-{{ act.id }}').qrcode({#}
+{#                               render: 'canvas',#}
+{#                               width: 60,#}
+{#                               height: 60,#}
+{#                               text: "{{ act.links }}",#}
+{#                            });#}
+{#                        </script>#}
+{#                        <span style="font-size: 9px">微信扫描二维码跳转至公众号或推文</span>#}
+                        <button><a href="{{ act.links }}" style="color: black">点击跳转</a></button>
+                        <span style="font-size: 9px">点击按钮查看原文</span>
                     </div>
                 </div>
             </div>
@@ -251,7 +253,7 @@
 {#modal finished#}
   <main style="margin-top: 2em">
 		<!-- your content here -->
-         <div class="container" style="padding: 0">
+      <div class="container" style="padding: 0">
 		    <!-- Team members structure start -->
 		    	<div class="team-members row">
 		            <!-- effect-5 html -->
@@ -280,6 +282,39 @@
 		        </div>
 		    <!-- Team members structure start -->
 		    </div>
+      <div>
+        <ul class="pagination">
+            <li>
+            {% if actspage.has_previous %}
+                <a href="?page={{ actspage.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true"><</span>
+                </a>
+            {% else %}
+                <span>顶到最前面啦</span>
+            {% endif %}
+            </li>
+            {% for pagenum in displayrange %}
+                {% if pagenum == actspage.number %}
+                    <li class="active"><span>{{ pagenum }}</span></li>
+                {% else %}
+                    {% if pagenum == "..." %}
+                        <li><span>{{ pagenum }}</span></li>
+                    {% else %}
+                        <li><a href="?page={{ pagenum }}">{{ pagenum }}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <li>
+            {% if actspage.has_next %}
+                <a href="?page={{ actspage.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">></span>
+                </a>
+            {% else %}
+                <span>顶到最后面啦</span>
+            {% endif %}
+            </li>
+        </ul>
+        </div>
 	</main> <!-- cd-content -->
 <div class="md-overlay"></div>
 	<div class="cd-overlay-nav">

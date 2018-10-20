@@ -234,7 +234,7 @@
 {#modal finished#}
     <main>
 		<!-- your content here -->
-         <div class="container" style="padding: 0">
+        <div class="container" style="padding: 0">
 		    <!-- Team members structure start -->
 		    	<div class="team-members row">
 		            <!-- effect-5 html -->
@@ -263,6 +263,45 @@
 		        </div>
 		    <!-- Team members structure start -->
 		    </div>
+
+        <div>
+        <ul class="pagination">
+            <li>
+            {% if actspage.has_previous %}
+                <a href="?page={{ actspage.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true"><</span>
+                </a>
+            {% else %}
+                <span>顶到最前面啦</span>
+            {% endif %}
+            </li>
+            {% for pagenum in displayrange %}
+                {% if pagenum == actspage.number %}
+                    <li class="active"><span>{{ pagenum }}</span></li>
+                {% else %}
+                    {% if pagenum == "..." %}
+                        <li><span>{{ pagenum }}</span></li>
+                    {% else %}
+                        <li><a href="?page={{ pagenum }}">{{ pagenum }}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <li>
+            {% if actspage.has_next %}
+                <a href="?page={{ actspage.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">></span>
+                </a>
+            {% else %}
+                <span>顶到最后面啦</span>
+            {% endif %}
+            </li>
+        </ul>
+{#        <p style="color:darkgrey;">#}
+{#            共有{{ paginator.count }}个活动#}
+{#            当前第{{ actspage.number }}页， 共{{ paginator.num_pages }}页#}
+{#        </p>#}
+        </div>
+    {#            paginator#}
 	</main> <!-- cd-content -->
 <div class="md-overlay"></div>
 	<div class="cd-overlay-nav">
