@@ -160,7 +160,7 @@ def register(request):
                 new_user.has_confirmed = True
                 new_user.save()
                 return HttpResponseRedirect(reverse('accounts:login_test'))
-    form = RegisterForm()
+    regform = RegisterForm()
     return render(request, 'accounts/register.html', locals())
 
 
