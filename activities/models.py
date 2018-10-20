@@ -36,7 +36,7 @@ class Activities(models.Model):
         return self.short_name
 
     class Meta:
-        ordering = ['-mod_date']
+        ordering = ["-begin", "-pub_date"]
         verbose_name = 'Activity'
         verbose_name_plural = 'Activities'
 
