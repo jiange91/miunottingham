@@ -115,7 +115,7 @@
             font-style: italic;
         }
         span#act_begin{
-            font-size: 14px;
+            font-size: 13px;
         }
         canvas:hover{
             width: 129px;
@@ -168,7 +168,7 @@
                     <h3 class="title" style="text-align: center" id="act_name">{{ act.short_name }}</h3>
                     <div>
                         <div  class="circular--landscape" style="display:inline-block;vertical-align: middle">
-                            <img src="{{ act.group_name.img.url }}" style="max-height: 150px" id="group_img">
+                            <img src="{{ act.group_name.logo.url }}" style="max-height: 150px" id="group_img">
                         </div>
                         <span style="font-size: 12px" id="act_pub">Pub：{{ act.pub_date|date:"H:i  F d" }}</span>
                     </div>
@@ -248,7 +248,7 @@
 	    </nav>
 	</header><!-- /header -->
 
-<section class="jarallax" style="background-image: url('{{ group.img.url }}');">
+<section class="jarallax" style="background-image: url('{{ group.img.url }}');margin-top: 60px">
 			<div class="container">
 				<div class="aligner">
 					<div class="aligner-item page-title">

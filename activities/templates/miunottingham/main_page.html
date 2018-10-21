@@ -113,6 +113,9 @@
         span#act_begin, span#act_location, span#group_name{
             font-style: italic;
         }
+        span#act_begin{
+            font-size: 13px;
+        }
         canvas:hover{
             width: 129px;
             height: 129px;
@@ -163,14 +166,14 @@
                     <h3 class="title" style="text-align: center" id="act_name">{{ act.short_name }}</h3>
                     <div>
                         <div  class="circular--landscape" style="display:inline-block;vertical-align: middle">
-                            <img src="{{ act.group_name.img.url }}" style="max-height: 150px" id="group_img">
+                            <img src="{{ act.group_name.logo.url }}" style="max-height: 150px" id="group_img">
                         </div>
                         <span style="font-size: 12px" id="act_pub">Pub：{{ act.pub_date|date:"H:i  F d" }}</span>
                     </div>
                     <ul class="pricing-content">
                         <li class="desctext" id="act_desc">{{ act.desc }}</li>
                         <li class="actdetails" style="text-align: center">
-                            <span>活动时间：<span id="act_begin">{{ act.begin|date:"m--d G:i" }}</span><span class="glyphicon glyphicon-arrow-right"></span><span id="act_begin">{{ act.end|date:"m--d G:i" }}</span></span><br>
+                            <span>活动时间：<span id="act_begin">{{ act.begin|date:"m-d G:i" }}</span><span class="glyphicon glyphicon-arrow-right"></span><span id="act_begin">{{ act.end|date:"m-d G:i" }}</span></span><br>
                             <span>举办地点：<span id="act_location">{{ act.location }}</span></span><br>
                             <span>举办者：<span id="group_name"><a href="{% url 'miunottingham:group_acts' act.group_name.id %}">{{ act.group_name.group_name }}</a></span></span>
                             <p class="glyphicon glyphicon-home" style="margin-left: 6px;font-size: 12px;color: gray"></p>

@@ -10,6 +10,7 @@ class Groups(models.Model):
     c_time = models.DateTimeField(default=timezone.now)
     mod_time = models.DateTimeField(auto_now=True)
     img = models.ImageField(upload_to='avatar')
+    logo = models.ImageField(upload_to='logo')
     has_confirmed = models.BooleanField(default=False)
     permitted = models.BooleanField(default=False)
 
