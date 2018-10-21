@@ -14,4 +14,5 @@ urlpatterns = [
     path('edit_activity/<int:act_id>/', views.edit_activity, name='edit_activity'),
     path('groupconfirm/<str:code>/<int:user_id>/',views.groupconfirm, name='groupconfirm'),
     path('edit_activity/<int:act_id>/delete/', views.delete_act, name='del_activity'),
+    path('your_acts/',views.your_acts, name='your_acts'),
 ]

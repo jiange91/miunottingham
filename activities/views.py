@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from activities.models import Groups, Activities, GroupConfirmString
 from accounts.models import User
 from django.urls import reverse
-from activities.forms import ActivitiesForm, GroupsForm
+from activities.forms import ActivitiesForm, GroupsForm, EditForm
 from django.core.exceptions import ObjectDoesNotExist
 import hashlib
 import datetime
@@ -64,8 +64,8 @@ def main_page(request):
     page_range = paginator.page_range
     actspage = paginator.get_page(page_num)
     activities = actspage.object_list
-    current = actspage.number
-    displayrange = list(range(max(current-2, 1), current)) + list(range(current, min(current+2, paginator.num_pages)))
+    current = int(page_num)
+    displayrange = list(range(max(current-2,1),min(current+2, paginator.num_pages)+1))
     # 加省略号
     if displayrange[0] - 1 >= 2:
         displayrange.insert(0, "...")
@@ -157,19 +157,26 @@ def new_activity(request, group_id):
 
 
 def edit_activity(request, act_id):
-    activity = Activities.objects.get(id=act_id)
-    group = activity.group_name
-    if request.method != 'POST':
-        form = ActivitiesForm(instance=activity)
+    if not request.session.get('is_login'):
+        return render(request, 'miunottingham/main_page.html')
     else:
-        form = ActivitiesForm(instance=activity, data=request.POST)
-        if form.is_valid():
-            form.save()
-            if request.FILES.get('img'):
-                activity.img = request.FILES.get('img')
-                activity.save()
-            return HttpResponseRedirect(reverse('miunottingham:details',args=[act_id]))
-    return render(request, 'miunottingham/edit_activity.html', locals())
+        activity = Activities.objects.get(id=act_id)
+        group = activity.group_name
+        user_id = request.session.get('user_id')
+        user = User.objects.get(id=user_id)
+        if user.groups_set.filter(user_id=user_id):
+            if user.groups_set.get(user_id=user_id).id == group.id:
+                if request.method != 'POST':
+                    form = EditForm(instance=activity)
+                else:
+                    form = EditForm(instance=activity, data=request.POST)
+                    if form.is_valid():
+                        form.save()
+                        if request.FILES.get('img'):
+                            activity.img = request.FILES.get('img')
+                            activity.save()
+                        return HttpResponseRedirect(reverse('miunottingham:your_acts'))
+                return render(request, 'miunottingham/edit_activity.html', locals())
 
 
 def new_group(request, userid):
@@ -219,11 +226,26 @@ def groupconfirm(request, code, user_id):
 
 
 def delete_act(request, act_id):
-    activity = Activities.objects.get(id=act_id)
-    group = activity.group_name
-    activity.delete()
-    return HttpResponseRedirect(reverse('miunottingham:group_acts',args=[group.id]))
+    if not request.session.get('is_login'):
+        return render(request, 'miunottingham/main_page.html')
+    else:
+        activity = Activities.objects.get(id=act_id)
+        group = activity.group_name
+        user_id = request.session.get('user_id')
+        user = User.objects.get(id=user_id)
+        if user.groups_set.filter(user_id=user_id):
+            if user.groups_set.get(user_id=user_id).id == group.id:
+                activity.delete()
+                return HttpResponseRedirect(reverse('miunottingham:your_acts'))
 
 
-
+def your_acts(request):
+    if not request.session.get('is_login'):
+        return HttpResponseRedirect(reverse('miunottingham:main_page'))
+    else:
+        user_id = request.session.get('user_id')
+        user = User.objects.get(id=user_id)
+        group = user.groups_set.get(user_id=user_id)
+        activities = group.activities_set.all()
+        return render(request, 'miunottingham/your_acts.html', locals())
 

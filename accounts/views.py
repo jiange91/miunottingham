@@ -124,11 +124,11 @@ def login(request):
 
 def logout(request):
     if not request.session.get('is_login'):
-        return redirect(request.GET.get('from', reverse('miunottingham:main_page')))
+        return HttpResponseRedirect(reverse('miunottingham:main_page'))
     request.session['is_login'] = False
     request.session['user_name'] = None
     request.session['user_id'] = None
-    return redirect(request.GET.get('from', reverse('miunottingham:main_page')))
+    return HttpResponseRedirect(reverse('miunottingham:main_page'))
 
 
 def register(request):

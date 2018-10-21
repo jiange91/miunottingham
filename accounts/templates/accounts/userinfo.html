@@ -88,9 +88,9 @@
           </form>
         {% if isgroup %}
             <div style="margin-top: 14px;color: white;display: inline-block">Your registered group:</div>
-            <p style="color: white;font-weight: bold;display: inline-block; font-size: 100%; padding-left: 0px;padding-right: 0px;">{{ group_name }}</p>
+            <a href="{% url 'miunottingham:group_acts' group.id %}"><p style="color: white;font-weight: bold;display: inline-block; font-size: 100%; padding-left: 0px;padding-right: 0px;">{{ group_name }}</p></a>
             <div id="UserActOptDiv">
-                <a class="UserActOption" href="{% url 'miunottingham:group_acts' group.id %}">查看你发布的活动</a>
+                <a class="UserActOption" href="{% url 'miunottingham:your_acts' %}">查看你发布的活动</a>
                 <a class="UserActOption" href="{% url 'miunottingham:new_activity' group.id %}">发布新活动</a>
             </div>
         {% else %}

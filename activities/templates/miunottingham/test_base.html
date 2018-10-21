@@ -53,7 +53,7 @@
             <li><a href="{% url 'miunottingham:groups' %}">Registered Groups</a></li>
             {% if request.session.is_login %}
                 <li><a href="{% url 'accounts:userinfo'%}"> {{ request.session.user_name }}</a></li>
-                <li><a href="{% url 'accounts:logout' %}?from={{ request.get_full_path }}">Logout</a></li>
+                <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
             {% else %}
                 <li><a href="{% url 'accounts:login_test' %}?from={{ request.get_full_path }}">Login</a></li>
                 <l1><a href="{% url 'accounts:register' %}" id="signupcustom">Sign up</a></l1>
