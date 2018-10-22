@@ -54,16 +54,25 @@
         margin-top: 1em;
         display: block;
     }
+    a.editgroup{
+        color: white;
+        margin-left: 1em;
+        display: block;
+    }
+    a.editgroup:hover{
+        color: #a8d6fe;
+        text-decoration: none;
+    }
     </style>
 {% endblock %}
 
 
 {% block content %}
        <div class="tips">
-        {% if notice %}
+           {% if notice %}
                       <em class="alert alert-success">{{ notice }}</em>
               {% endif %}
-    {% if message %}
+           {% if message %}
                   <div class="alert alert-warning">{{ message }}</div>
               {% endif %}
        </div>
@@ -84,11 +93,12 @@
               <button type="submit" class="btn btn-lg btn-primary btn-block">Edit</button>
               </div>
               <br>
-           <a href="{% url 'accounts:pswchange_request'%}" class="btncpw">Change your password</a>
+           <a href="{% url 'accounts:pswchange_request'%}" class="btncpw"><span class="glyphicon glyphicon-lock"></span>修改密码</a>
           </form>
         {% if isgroup %}
             <div style="margin-top: 14px;color: white;display: inline-block">Your registered group:</div>
-            <a href="{% url 'miunottingham:group_acts' group.id %}"><p style="color: white;font-weight: bold;display: inline-block; font-size: 100%; padding-left: 0px;padding-right: 0px;">{{ group_name }}</p></a>
+            <a href="{% url 'miunottingham:group_acts' group.id %}"><p style="color: white;font-weight: bold;display: inline-block; font-size: 100%; padding-left: 0;padding-right: 0;">{{ group_name }}</p></a>
+            <a href="{% url 'miunottingham:editgroup' group.id %}" class="editgroup">修改组织信息<span class="glyphicon glyphicon-folder-open"></span></a>
             <div id="UserActOptDiv">
                 <a class="UserActOption" href="{% url 'miunottingham:your_acts' %}">查看你发布的活动</a>
                 <a class="UserActOption" href="{% url 'miunottingham:new_activity' group.id %}">发布新活动</a>

@@ -289,6 +289,3 @@ def pswforget(request):
             message = "Unregistered account"
             return render(request, 'accounts/pswforget.html',locals())
     return render(request, 'accounts/pswforget.html')
-
-
-

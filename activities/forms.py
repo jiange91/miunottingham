@@ -40,3 +40,13 @@ class EditForm(forms.ModelForm):
                    'end': forms.DateTimeInput(attrs={'class': 'form-control'}),
                    }
 
+
+class EditGroup(forms.ModelForm):
+    img = forms.ImageField(required=False)
+    logo = forms.ImageField(required=False)
+
+    class Meta:
+        model = Groups
+        fields = {'group_name', 'img', 'logo'}
+        labels = {'group_name': "组织名称", 'img': '组织界面背景图，尽量不要选小图片', 'logo': '组织logo，展示在小卡片上'}
+        widgets = {'group_name': forms.TextInput(attrs={'class': 'form-control'})}

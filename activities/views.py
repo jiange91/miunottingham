@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from activities.models import Groups, Activities, GroupConfirmString
 from accounts.models import User
 from django.urls import reverse
-from activities.forms import ActivitiesForm, GroupsForm, EditForm
+from activities.forms import ActivitiesForm, GroupsForm, EditForm, EditGroup
 from django.core.exceptions import ObjectDoesNotExist
 import hashlib
 import datetime
@@ -249,3 +249,26 @@ def your_acts(request):
         activities = group.activities_set.all()
         return render(request, 'miunottingham/your_acts.html', locals())
 
+
+def editgroup(request, group_id):
+    if not request.session.get('is_login'):
+        return render(request, 'miunottingham/main_page.html')
+    else:
+        group = Groups.objects.get(id=group_id)
+        user_id = request.session.get('user_id')
+        user = User.objects.get(id=user_id)
+        if user.groups_set.filter(user_id=user_id):
+            if user.groups_set.get(user_id=user_id).id == group_id:
+                if request.method != 'POST':
+                    form = EditGroup(instance=group)
+                else:
+                    form = EditGroup(instance=group, data=request.POST)
+                    if form.is_valid():
+                        form.save()
+                        if request.FILES.get('img'):
+                            group.img = request.FILES.get('img')
+                        if request.FILES.get('logo'):
+                            group.logo = request.FILES.get('logo')
+                        group.save()
+                        message = "成功修改组织信息"
+                return render(request, 'miunottingham/editgroup.html', locals())
