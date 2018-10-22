@@ -151,6 +151,8 @@ def new_activity(request, group_id):
         if form.is_valid():
             activity = form.save(commit=False)
             activity.group_name = Groups.objects.get(id=group_id)
+            if (activity.end - activity.begin).days >= 1:
+                activity.interval = True
             activity.save()
             return HttpResponseRedirect(reverse('miunottingham:group_acts',args=[group_id]))
     return render(request, 'miunottingham/new_activity.html', locals())
@@ -171,6 +173,8 @@ def edit_activity(request, act_id):
                 else:
                     form = EditForm(instance=activity, data=request.POST)
                     if form.is_valid():
+                        if (form.end - form.begin).days >= 1:
+                            form.interval = True
                         form.save()
                         if request.FILES.get('img'):
                             activity.img = request.FILES.get('img')
