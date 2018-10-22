@@ -273,7 +273,11 @@
                             <div class="member-info">
                                 <div style="border-top: 1px solid #333333;border-bottom: 1px solid #333333;margin-bottom: 2px;color: whitesmoke;letter-spacing: 0">
                                     <h3>{{ act.short_name }}</h3>
-                                    <h5>{{ act.begin|date:"j  N"}}</h5>
+                                    {% if act.interval %}
+                                        <h5>{{ act.begin|date:"j N" }}<span class="glyphicon glyphicon-arrow-right" style="color: white"></span>{{ act.end|date:"j N" }}</h5>
+                                    {% else %}
+                                        <h5>{{ act.begin|date:"j  N ,D" }}</h5>
+                                    {% endif %}
                                 </div>
 		                    <p style="font-size: 13px;color: darkgray;margin-top: 8px">{{ act.desc }}</p>
                                 <div style="display: inline-block;cursor: pointer;vertical-align: middle;margin-right: 5em;margin-left: -1em" class="par" onclick="ParChange(this, {{ act.id }})">

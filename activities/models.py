@@ -34,6 +34,8 @@ class Activities(models.Model):
     end = models.DateTimeField(default=timezone.now)
     desc = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
+    interval = models.BooleanField(default=False)
+
     def __str__(self):
         return self.short_name
 
