@@ -10,19 +10,19 @@
 	<title>{{ group_name }}</title>
     <link rel="shortcut icon" href="{% static 'waterfull/img/favicon.ico' %}" type="image/x-icon">
 	    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'waterfull/css/core.css' %}">
+{#    <link rel="stylesheet" href="{% static 'waterfull/css/core.css' %}"> change 1#}
 <!-- Custom CSS -->
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'menu/css/reset.css' %}"> <!-- CSS reset -->
+{#    <link rel="stylesheet" href="{% static 'menu/css/reset.css' %}"> <!-- CSS reset --> change 2#}
 	<!-- Resource style -->
-	<script src="{% static 'menu/js/modernizr.js' %}"></script> <!-- Modernizr -->
+{#	<script src="{% static 'menu/js/modernizr.js' %}"></script> <!-- Modernizr --> change 3#}
     <link rel="stylesheet" href="{% static 'menu/css/style.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/default.css' %}" />
+{#    <link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/default.css' %}" /> change 4#}
 
 		<link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/component.css' %}" />
-    	<link rel="stylesheet" href="{% static 'navresponse/css/normalize.css' %}" media="screen">
+{#    	<link rel="stylesheet" href="{% static 'navresponse/css/normalize.css' %}" media="screen">change 5#}
 	<link rel="stylesheet" href="{% static 'navresponse/css/basic-styles.css' %}" media="screen">
-	<link rel="stylesheet" href="{% static 'navresponse/css/header.css' %}" media="screen">
+{#	<link rel="stylesheet" href="{% static 'navresponse/css/header.css' %}" media="screen">change 7#}
    	<link rel="stylesheet" href="{% static 'navresponse/css/okayNav-base.css' %}" media="screen">
 	<link rel="stylesheet" href="{% static 'navresponse/css/okayNav-theme.css' %}" media="screen">
 	<!--[if IE]>
@@ -30,6 +30,7 @@
 	<![endif]-->
     <link href="{% static 'ModalWindowEffects/css/bootstrap-grid.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'hover/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font.css' %}" />
     	<style type="text/css">
 		.demo{padding: 2em 0;background: #fff;}
 		.pricingTable{
@@ -117,10 +118,6 @@
         span#act_begin{
             font-size: 13px;
         }
-        canvas:hover{
-            width: 129px;
-            height: 129px;
-        }
         span.par_num{
             color: whitesmoke;
             margin-left: 5px;
@@ -136,16 +133,18 @@
            background-color: #222222;
            color: whitesmoke;
            border-radius:9%;
-           border: 1px solid whitesmoke
+           border: 1px solid whitesmoke;
+           padding: 0.4em 1em;
        }
             a:hover{
                 text-decoration: none;
+                color: antiquewhite;
             }
             span#group_name a{
                 color: black;
             }
             span#group_name a:hover{
-                color: whitesmoke;
+                color: antiquewhite;
             }
             span.glyphicon-arrow-right{
                 margin: 0 10px 0 16px;
@@ -154,9 +153,9 @@
             }
 	</style>
 
-	<script src="{% static 'ModalWindowEffects/js/jquery-3.2.1.js' %}"></script>
-    <script src="{% static 'ModalWindowEffects/js/jquery.qrcode.min.js' %}"></script>
-    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+{#	<script src="{% static 'ModalWindowEffects/js/jquery-3.2.1.js' %}"></script> change 8#}
+{#    <script src="{% static 'ModalWindowEffects/js/jquery.qrcode.min.js' %}"></script>#}
+{#    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>#}
 
 </head>
 <body>
@@ -243,7 +242,9 @@
 	</nav>
 <header id="header" class="okayNav-header">
 <a class="cd-nav-trigger">Menu<span class="cd-icon" style="z-index: 99999999;font-weight: bold"></span></a>
-    <img src="{% static 'img/Mlogo.png' %}" style="max-height: 100%;margin-left: 48%">
+    <div class="imagecontainer" style="text-align: center;width: 100%;height: 100%">
+        <img src="{% static 'img/Mlogo.png' %}" style="max-height: 100%">
+   </div>
 	    <nav role="navigation" id="nav-main" class="okayNav">
 	    </nav>
 	</header><!-- /header -->

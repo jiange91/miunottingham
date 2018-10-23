@@ -11,23 +11,23 @@
     <link rel="shortcut icon" href="{% static 'waterfull/img/favicon.ico' %}" type="image/x-icon">
 	    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}">
 
-    <link rel="stylesheet" href="{% static 'menu/css/reset.css' %}"> <!-- CSS reset -->
+{#    <link rel="stylesheet" href="{% static 'menu/css/reset.css' %}"> <!-- CSS reset -->change 4#}
 	<!-- Resource style -->
-	<script src="{% static 'menu/js/modernizr.js' %}"></script> <!-- Modernizr -->
+{#	<script src="{% static 'menu/js/modernizr.js' %}"></script> <!-- Modernizr -->#}
     <link rel="stylesheet" href="{% static 'menu/css/style.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/default.css' %}" />
+{#    <link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/default.css' %}" /> change 1 #}
     <link rel="stylesheet" type="text/css" href="{% static 'css/font.css' %}" />
 
 		<link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/component.css' %}" />
-    	<link rel="stylesheet" href="{% static 'navresponse/css/normalize.css' %}" media="screen">
+{#    	<link rel="stylesheet" href="{% static 'navresponse/css/normalize.css' %}" media="screen"> chang2 #}
 	<link rel="stylesheet" href="{% static 'navresponse/css/basic-styles.css' %}" media="screen">
-	<link rel="stylesheet" href="{% static 'navresponse/css/header.css' %}" media="screen">
+{#	<link rel="stylesheet" href="{% static 'navresponse/css/header.css' %}" media="screen">#}
    	<link rel="stylesheet" href="{% static 'navresponse/css/okayNav-base.css' %}" media="screen">
 	<link rel="stylesheet" href="{% static 'navresponse/css/okayNav-theme.css' %}" media="screen">
 	<!--[if IE]>
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
-    <link href="{% static 'ModalWindowEffects/css/bootstrap-grid.min.css' %}" rel="stylesheet">
+{#    <link href="{% static 'ModalWindowEffects/css/bootstrap-grid.min.css' %}" rel="stylesheet"> change 3#}
     <link rel="stylesheet" type="text/css" href="{% static 'hover/css/style.css' %}">
     	<style type="text/css">
 		.demo{padding: 2em 0;background: #fff;}
@@ -116,10 +116,6 @@
         span#act_begin{
             font-size: 13px;
         }
-        canvas:hover{
-            width: 129px;
-            height: 129px;
-        }
         span.par_num{
             color: whitesmoke;
             margin-left: 5px;
@@ -135,16 +131,18 @@
            background-color: #222222;
            color: whitesmoke;
            border-radius:9%;
-           border: 1px solid whitesmoke
+           border: 1px solid whitesmoke;
+           padding: 0.4em 1em;
        }
             a:hover{
                 text-decoration: none;
+                color: antiquewhite;
             }
             span#group_name a{
                 color: black;
             }
             span#group_name a:hover{
-                color: whitesmoke;
+                color: antiquewhite;
             }
             span.glyphicon-arrow-right{
                 margin: 0 10px 0 16px;
@@ -152,9 +150,9 @@
                 font-size: 13px;
             }
 	</style>
-	<script src="{% static 'ModalWindowEffects/js/jquery-3.2.1.js' %}"></script>
-    <script src="{% static 'ModalWindowEffects/js/jquery.qrcode.min.js' %}"></script>
-    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+{#	<script src="{% static 'ModalWindowEffects/js/jquery-3.2.1.js' %}"></script>#}
+{#    <script src="{% static 'ModalWindowEffects/js/jquery.qrcode.min.js' %}"></script>#}
+{#    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>#}
 
 </head>
 <body>
@@ -341,7 +339,7 @@
 <script src="{% static 'ModalWindowEffects/js/classie.js' %}"></script>
     <script src="{% static 'ModalWindowEffects/js/modalEffects.js' %}"></script>
     <script src="{% static 'ModalWindowEffects/js/cssParser.js' %}"></script>
-    <script src="{% static 'ModalWindowEffects/js/css-filters-polyfill.js' %}"></script>
+{#    <script src="{% static 'ModalWindowEffects/js/css-filters-polyfill.js' %}"></script>#}
 <script>
     function ParChange(obj, act_id) {
         var is_par = obj.getElementsByClassName('active2').length == 0
