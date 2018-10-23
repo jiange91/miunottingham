@@ -31,7 +31,7 @@ def send_email(email, code, username):
     text_content = 'If you see this message, it tells that your email server does not support HTML content'
     html_content = '''
                     <p>Hellow {}, Thanks for signing up with Miunottingham.<p/>
-                    <p><a href="http://localhost:8000/accounts/confirm/{}" target=blank>
+                    <p><a href="http://47.107.82.191/accounts/confirm/{}" target=blank>
                     You must follow this link to activate your account</a></p>
                     <p>Have fun, and don't hesitate to contact us with your feedback</p>
                     '''.format(username, code)
@@ -46,7 +46,7 @@ def send_psw_email(email, code, username):
     html_content = '''
                     <p>Hello {}, you are trying to modify the password for your account in Miunottingham. If it's not
                     your purpose, please contact our technical staff.</p>
-                    <p><a href="http://localhost:8000/accounts/pswchange/{}" target=blank>
+                    <p><a href="http://47.107.82.191/accounts/pswchange/{}" target=blank>
                      you can click this link to edit your password</a></p>
                     <p>Have fun, and don't hesitate to contact us with your feedback</p>
                     <p>This link lasts for {} days</p>'''.format(username, code, settings.CONFIRM_DAYS)
