@@ -173,12 +173,12 @@ def edit_activity(request, act_id):
                 else:
                     form = EditForm(instance=activity, data=request.POST)
                     if form.is_valid():
-                        if (form.end - form.begin).days >= 1:
-                            form.interval = True
-                        form.save()
+                        activity = form.save(commit=False)
+                        if (activity.end - activity.begin).days >= 1:
+                            activity.interval = True
                         if request.FILES.get('img'):
                             activity.img = request.FILES.get('img')
-                            activity.save()
+                        activity.save()
                         return HttpResponseRedirect(reverse('miunottingham:your_acts'))
                 return render(request, 'miunottingham/edit_activity.html', locals())
 
