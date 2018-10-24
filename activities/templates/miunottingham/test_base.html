@@ -3,23 +3,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}CCM{% endblock %}</title>
-    <script src="{% static 'ModalWindowEffects/js/jquery-3.2.1.js' %}"></script>
-<link href="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}">
 {% block highestcss %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font.css' %}" />
     <link rel="shortcut icon" href="{% static 'waterfull/img/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}">
 <link rel="stylesheet" href="{% static 'menu/css/style.css' %}">
 	{% block css %}{% endblock %}
-    <link rel="stylesheet" href="{% static 'menu/css/reset.css' %}"> <!-- CSS reset -->
+{#    <link rel="stylesheet" href="{% static 'menu/css/reset.css' %}"> <!-- CSS reset -->#}
 	<!-- Resource style -->
-	<script src="{% static 'menu/js/modernizr.js' %}"></script> <!-- Modernizr -->
-    <link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/default.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/default.css' %}" />
+{#	<script src="{% static 'menu/js/modernizr.js' %}"></script> <!-- Modernizr -->#}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/default.css' %}" />#}
 		<link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/component.css' %}" />
-    	<link rel="stylesheet" href="{% static 'navresponse/css/normalize.css' %}" media="screen">
+{#    	<link rel="stylesheet" href="{% static 'navresponse/css/normalize.css' %}" media="screen">#}
 	<link rel="stylesheet" href="{% static 'navresponse/css/basic-styles.css' %}" media="screen">
-	<link rel="stylesheet" href="{% static 'navresponse/css/header.css' %}" media="screen">
+{#	<link rel="stylesheet" href="{% static 'navresponse/css/header.css' %}" media="screen">#}
    	<link rel="stylesheet" href="{% static 'navresponse/css/okayNav-base.css' %}" media="screen">
 	<link rel="stylesheet" href="{% static 'navresponse/css/okayNav-theme.css' %}" media="screen">
 <!--[if IE]>
@@ -83,8 +83,8 @@
 <script>window.jQuery || document.write('<script src="js/jquery-3.2.1.min.js"><\/script>')</script>
 <script src="{% static 'navresponse/js/jquery.okayNav.js' %}"></script>
 <script type="text/javascript">
-        var navigation = $('#nav-main').okayNav();
-    	</script>
+    var navigation = $('#nav-main').okayNav();
+</script>
 <script src="{% static 'menu/js/velocity.min.js' %}"></script>
 <script src="{% static 'menu/js/main.js' %}"></script>
 <script>

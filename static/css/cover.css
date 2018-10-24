@@ -91,13 +91,13 @@ body {
 .masthead-nav > .active > a,
 .masthead-nav > .active > a:hover,
 .masthead-nav > .active > a:focus {
-  color: #fff;
+  color: whitesmoke;
   border-bottom-color: #fff;
 }
 
 @media (min-width: 768px) {
   .masthead-brand {
-    float: left;
+    float: right;
   }
   .masthead-nav {
     float: right;
@@ -140,7 +140,7 @@ body {
   }
   .mastfoot {
     position: fixed;
-    bottom: 0;
+    bottom: 4em;
   }
   /* Start the vertical centering */
   .site-wrapper-inner {
@@ -158,6 +158,6 @@ body {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 700px;
+    width: 81%;
   }
 }
