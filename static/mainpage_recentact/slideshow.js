@@ -3,10 +3,15 @@ var intervalId = 0;
 
 const prevBtn = document.querySelector('.prev')
 prevBtn.addEventListener('click', () => updateSlideIndex(slideIndex-1))
+prevBtn.addEventListener('touchstart', () => updateSlideIndex(slideIndex-1))
 const nextBtn = document.querySelector('.next')
 nextBtn.addEventListener('click', () => updateSlideIndex(slideIndex+1))
+nextBtn.addEventListener('touchstart', () => updateSlideIndex(slideIndex+1))
 const dotBtn = document.querySelectorAll('.dot')
-dotBtn.forEach((dot,i) => dot.addEventListener('click', () => updateSlideIndex(i)))
+dotBtn.forEach((dot,i) => {
+  dot.addEventListener('click', () => updateSlideIndex(i))
+  dot.addEventListener('touchstart', () => updateSlideIndex(i))
+})
 
 showSlides()
 function updateSlideIndex(i) {
