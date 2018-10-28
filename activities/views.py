@@ -79,6 +79,8 @@ def main_page(request):
 
     authenticated = request.session.get('is_login')
     form = LoginForm()
+    latelyacts = Activities.objects.filter(showup=True)
+    lateltcount = latelyacts.count()
     if authenticated:
         id = request.session.get('user_id')
         user = User.objects.get(id=id)

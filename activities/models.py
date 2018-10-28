@@ -35,6 +35,7 @@ class Activities(models.Model):
     desc = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
     interval = models.BooleanField(default=False)
+    showup = models.BooleanField(default=False)
 
     def __str__(self):
         return self.short_name
@@ -57,4 +58,3 @@ class GroupConfirmString(models.Model):
         ordering = ['-c_time']
         verbose_name = 'confirmation code'
         verbose_name_plural = 'confirmation codes'
-
