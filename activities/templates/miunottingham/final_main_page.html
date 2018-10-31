@@ -1,0 +1,431 @@
+{% load static %}
+{% load likes_tags %}
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Main page</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="shortcut icon" href="{% static 'waterfull/img/favicon.ico' %}" type="image/x-icon">
+	    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+
+{#    <link rel="stylesheet" href="{% static 'menu/css/reset.css' %}"> <!-- CSS reset -->change 4#}
+	<!-- Resource style -->
+{#	<script src="{% static 'menu/js/modernizr.js' %}"></script> <!-- Modernizr -->#}
+    <link rel="stylesheet" href="{% static 'menu/css/style.css' %}">
+{#    <link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/default.css' %}" /> change 1 #}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font.css' %}" />
+
+		<link rel="stylesheet" type="text/css" href="{% static 'ModalWindowEffects/css/component.css' %}" />
+{#    	<link rel="stylesheet" href="{% static 'navresponse/css/normalize.css' %}" media="screen"> chang2 #}
+	<link rel="stylesheet" href="{% static 'navresponse/css/basic-styles.css' %}" media="screen">
+{#	<link rel="stylesheet" href="{% static 'navresponse/css/header.css' %}" media="screen">#}
+   	<link rel="stylesheet" href="{% static 'navresponse/css/okayNav-base.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'navresponse/css/okayNav-theme.css' %}" media="screen">
+	<!--[if IE]>
+		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+{#    <link href="{% static 'ModalWindowEffects/css/bootstrap-grid.min.css' %}" rel="stylesheet"> change 3#}
+    <link rel="stylesheet" type="text/css" href="{% static 'hover/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mainpage_recentact/slideshow.css' %}">
+    	<style type="text/css">
+		.demo{padding: 2em 0;background: #fff;}
+		.pricingTable{
+		    padding: 100px 0 3px;
+		    position: relative;
+		    transition: all 0.5s ease 0s;
+            background-color: darkgrey;
+		}
+		.pricingTable .title{
+		    width: 100%;
+		    padding: 10px 0;
+		    margin-top: -15px;
+		    background: #f7f2f0;
+		    border: 1px solid darkgrey;
+		    font-size: 22px;
+		    font-weight: 800;
+		    color: #25283d;
+		    position: absolute;
+		    top: 30px;
+		    left: -15px;
+		    transition: all 0.5s ease 0s;
+		}
+        .pricingTable .title{
+            border: 1px solid darkgrey;
+        }
+		.pricingTable .title:after{
+		    content: "";
+		    border-top: 15px solid darkgrey;
+		    border-left: 15px solid transparent;
+		    border-bottom: 15px solid transparent;
+		    position: absolute;
+		    bottom: -30px;
+		    left: -1px;
+		    transition: all 0.5s ease 0s;
+		}
+		.pricingTable .title:after{ border-top: 15px solid darkgrey; }
+		.pricingTable .price-value{
+		    font-size: 50px;
+		    color: #25283d;
+		    margin-bottom: 11px;
+		}
+		.pricingTable .month{
+		    display: inline-block;
+		    font-size: 14px;
+		    color: #bb69a2;
+		}
+		.pricingTable .pricing-content{
+		    list-style: none;
+		    padding: 0;
+		}
+		.pricingTable .pricing-content li{
+		    font-size: 15px;
+		    color: black;
+		    line-height: 28px;
+		    border-bottom: 1px solid #888888;
+            padding: .8em 2.4em;
+        }
+		.pricingTable .pricing-content li:first-child{
+            border-top: 1px solid #888888;
+            margin-top: 1em;
+            padding-top: 1.8em;
+            padding-bottom: 1.8em;
+        }
+
+		@media only screen and (max-width: 990px){
+		    .pricingTable{ margin-bottom: 30px; }
+		}
+        .circular--landscape{
+            display: inline-block;
+            position: relative;
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin: -3% 10% 3% 7%;
+        ;
+        }
+        .circular--landscape img{
+            width: auto;
+            height: 100%;
+        }
+        span#act_begin, span#act_location, span#group_name{
+            font-style: italic;
+        }
+        span#act_begin{
+            font-size: 13px;
+        }
+        span.par_num{
+            color: whitesmoke;
+            margin-left: 5px;
+        }
+        span.glyphicon{
+            color: whitesmoke;
+            font-size: 23px;
+        }
+        span.active2{
+            color: #f73f52;
+        }
+       .md-trigger{
+           background-color: #222222;
+           color: whitesmoke;
+           border-radius:9%;
+           border: 1px solid whitesmoke;
+           padding: 0.4em 1em;
+       }
+            a:hover{
+                text-decoration: none;
+                color: antiquewhite;
+            }
+            span#group_name a{
+                color: black;
+            }
+            span#group_name a:hover{
+                color: antiquewhite;
+            }
+            span.glyphicon-arrow-right{
+                margin: 0 10px 0 16px;
+                color: black;
+                font-size: 13px;
+            }
+	</style>
+{#	<script src="{% static 'ModalWindowEffects/js/jquery-3.2.1.js' %}"></script>#}
+{#    <script src="{% static 'ModalWindowEffects/js/jquery.qrcode.min.js' %}"></script>#}
+{#    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>#}
+
+</head>
+<body>
+<div class="slideshow-container">
+{% if lateltcount > 0 %}
+    {% for lateltact in latelyacts %}
+    <!-- Full-width images with number and caption text -->
+    <div class="mySlides slide_fade">
+    <a href="{% url 'miunottingham:details' lateltact.id %}">
+        <section class="jarallax" style="background-image: url('{{ lateltact.img.url }}');margin-top: 50px">
+			<div class="container">
+				<div class="aligner">
+					<div class="aligner-item page-title">
+						<h3 style="color:#dbdbdb;">{{ lateltact.group_name.group_name }}</h3>
+                        <h2 style="text-transform: initial; color: #dbdbdb">{{ lateltact.short_name }}</h2>
+					</div>
+				</div>
+			</div>
+		</section>
+    </a>
+    </div>
+    {% endfor %}
+    <!-- Next and previous buttons -->
+    <a class="prev" >&#10094;</a>
+    <a class="next" >&#10095;</a>
+  </div>
+  <br>
+  <!-- The dots/circles -->
+  <!-- //? what -->
+  <div style="text-align:center">
+  {% for count in latelyacts %}
+    <span class="dot" ></span>
+  {% endfor %}
+  </div>
+  <script src="{% static 'mainpage_recentact/slideshow.js' %}"></script>
+{% endif %}
+{% for act in activities %}
+    <div class="md-modal md-effect-1" id="modal-{{ act.id }}">
+        <div class="md-content">
+            <div style="width: 100%">
+                <div class="pricingTable">
+                    <h3 class="title" style="text-align: center" id="act_name">{{ act.short_name }}</h3>
+                    <div>
+                        <div  class="circular--landscape" style="display:inline-block;vertical-align: middle">
+                            <img src="{{ act.group_name.logo.url }}" style="max-height: 120px;max-width: 120px" id="group_img">
+                        </div>
+                        <span style="font-size: 12px" id="act_pub">Pub：{{ act.pub_date|date:"H:i  F d" }}</span>
+                    </div>
+                    <ul class="pricing-content">
+                        <li class="desctext" id="act_desc">{{ act.desc }}</li>
+                        <li class="actdetails" style="text-align: center">
+                            <span>活动时间：<span id="act_begin">{{ act.begin|date:"m-d G:i" }}</span><span class="glyphicon glyphicon-arrow-right"></span><span id="act_begin">{{ act.end|date:"m-d G:i" }}</span></span><br>
+                            <span>举办地点：<span id="act_location">{{ act.location }}</span></span><br>
+                            <span>举办者：<span id="group_name"><a href="{% url 'miunottingham:group_acts' act.group_name.id %}">{{ act.group_name.group_name }}</a></span></span>
+                            <p class="glyphicon glyphicon-home" style="margin-left: 6px;font-size: 12px;color: gray"></p>
+                        </li>
+                    </ul>
+                    <div style="text-align: center;margin:17px">
+                        <a class="btn" href="{{ act.links }}" style="display: block"><span class="glyphicon glyphicon-link"></span></a>
+                        <span style="font-size: 9px">点击按钮查看原文</span>
+                    </div>
+                </div>
+            </div>
+            <button class="md-close"style="display: none">Close me!</button>
+        </div>
+</div>
+{% endfor %}
+<nav style="text-align: center">
+		<ul class="cd-primary-nav">
+        <li style="margin-top: 10%"></li>
+                <li><a href="{% url 'miunottingham:main_page' %}">Home</a></li>
+			<li><a href="{% url 'accounts:cover_page' %}">About Miunottingham</a></li>
+            <li><a href="{% url 'miunottingham:groups' %}">Registered Groups</a></li>
+            {% if request.session.is_login %}
+                <li><a href="{% url 'accounts:userinfo'%}"> {{ request.session.user_name }}</a></li>
+                <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'accounts:login_test' %}">Login</a></li>
+                <l1><a href="{% url 'accounts:register' %}">Sign up</a></l1>
+            {% endif %}
+		</ul>
+</nav>
+<header id="header" class="okayNav-header">
+<a class="cd-nav-trigger">Menu<span class="cd-icon" style="z-index: 99999999;font-weight: bold"></span></a>
+   <div class="imagecontainer" style="text-align: center;width: 100%;height: 100%">
+        <img src="{% static 'img/Mlogo.png' %}" style="max-height: 100%">
+   </div>
+	    <nav role="navigation" id="nav-main" class="okayNav">
+	    </nav>
+	</header><!-- /header -->
+<div class="modal fade" id="login_modal" tabindex="-10" role="dialog" >
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+     <form class='form-signin' action="" method="post" id="login_medal_form">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">登录</h4>
+      </div>
+      <div class="modal-body">
+                  {% csrf_token %}
+                  {% for field in form %}
+                      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                      {{ field }}
+                  {% endfor %}
+                <span id="login_medal_tip" class="text-danger"></span>
+              <a href="{% url 'accounts:pswforget' %} " class="pull-right">forget password?</a>
+      </div>
+      <div class="modal-footer" style="margin-top: 10px">
+        <button type="submit" class="btn btn-primary">登录</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+{#modal finished#}
+    <main>
+		<!-- your content here -->
+        <div class="container" style="padding: 0">
+		    <!-- Team members structure start -->
+		    	<div class="team-members row">
+		            <!-- effect-5 html -->
+		           {% for act in activities %}
+                        <div class="single-member effect-3">
+		            	<div class="member-image">
+		                	<img src="{{ act.img.url }}" alt="{{ act.short_name }}">
+		                </div>
+                            <div class="member-info">
+                                <div style="border-top: 1px solid #333333;border-bottom: 1px solid #333333;margin-bottom: 2px;color: whitesmoke">
+                                    <h3>{{ act.short_name }}</h3>
+                                    {% if act.interval %}
+                                        <h5>{{ act.begin|date:"j N" }}<span class="glyphicon glyphicon-arrow-right" style="color: white"></span>{{ act.end|date:"j N" }}</h5>
+                                    {% else %}
+                                        <h5>{{ act.begin|date:"j  N ,D" }}</h5>
+                                    {% endif %}
+                                </div>
+		                    <p style="font-size: 13px;color: darkgray;margin-top: 8px">{{ act.desc }}</p>
+                                <div style="display: inline-block;cursor: pointer;vertical-align: middle;margin-right: 5em;margin-left: -1em" class="par" onclick="ParChange(this, {{ act.id }})">
+                                        <span class="glyphicon glyphicon-heart {% get_par_status act user authenticated %}"></span>
+                                        <span class="par_num {% get_par_status act user authenticated %}">{% get_par_count act %}</span>
+                                </div>
+                                <div style="display: inline-block;margin-right: -2em">
+                                    <button class="md-trigger" data-modal="modal-{{ act.id }}">Enter</button>
+                                </div>
+		                </div>
+		            </div>
+                    {% endfor %}
+		            <!-- effect-5 html end -->
+		        </div>
+		    <!-- Team members structure start -->
+		    </div>
+
+        <div>
+        <ul class="pagination">
+            <li>
+            {% if actspage.has_previous %}
+                <a href="?page={{ actspage.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true"><</span>
+                </a>
+            {% else %}
+                <span>顶到最前面啦</span>
+            {% endif %}
+            </li>
+            {% for pagenum in displayrange %}
+                {% if pagenum == actspage.number %}
+                    <li class="active"><span>{{ pagenum }}</span></li>
+                {% else %}
+                    {% if pagenum == "..." %}
+                        <li><span>{{ pagenum }}</span></li>
+                    {% else %}
+                        <li><a href="?page={{ pagenum }}">{{ pagenum }}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <li>
+            {% if actspage.has_next %}
+                <a href="?page={{ actspage.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">></span>
+                </a>
+            {% else %}
+                <span>顶到最后面啦</span>
+            {% endif %}
+            </li>
+        </ul>
+{#        <p style="color:darkgrey;">#}
+{#            共有{{ paginator.count }}个活动#}
+{#            当前第{{ actspage.number }}页， 共{{ paginator.num_pages }}页#}
+{#        </p>#}
+        </div>
+    {#            paginator#}
+	</main> <!-- cd-content -->
+<div class="md-overlay"></div>
+	<div class="cd-overlay-nav">
+		<span></span>
+	</div> <!-- cd-overlay-nav -->
+
+	<div class="cd-overlay-content">
+		<span></span>
+	</div> <!-- cd-overlay-content -->
+<script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+<script src="{% static 'navresponse/js/jquery.okayNav.js' %}"></script>
+<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript">
+        var navigation = $('#nav-main').okayNav();
+    	</script>
+<script src="{% static 'menu/js/velocity.min.js' %}"></script>
+<script src="{% static 'menu/js/main.js' %}"></script>
+<script>
+
+			// this is important for IEs
+
+			var polyfilter_scriptpath = '/js/';
+
+		</script>
+<script src="{% static 'ModalWindowEffects/js/classie.js' %}"></script>
+    <script src="{% static 'ModalWindowEffects/js/modalEffects.js' %}"></script>
+    <script src="{% static 'ModalWindowEffects/js/cssParser.js' %}"></script>
+{#    <script src="{% static 'ModalWindowEffects/js/css-filters-polyfill.js' %}"></script>#}
+<script>
+    function ParChange(obj, act_id) {
+        var is_par = obj.getElementsByClassName('active2').length == 0
+        $.ajax({
+            url:"{% url 'par_change' %}",
+            type:'GET',
+            data:{
+                act_id: act_id,
+                is_par:is_par,
+            },
+            cache:false,
+            success:function (data) {
+                console.log(data)
+                if (data['status']=='SUCCESS'){
+                    var span = $(obj.getElementsByClassName('par_num'));
+                    var heart= $(obj.getElementsByClassName('glyphicon'));
+                    if(is_par){
+                        span.addClass('active2');
+                        heart.addClass('active2');
+                    }else {span.removeClass('active2');
+                    heart.removeClass('active2');}
+                    span.text(data['par_num']);
+            }
+              else {
+                    if(data['code']==400){
+                        $('#login_modal').modal('show');
+                    }else {
+                        alert(data['message']);
+                        }
+                }
+            },
+            error:function (xhr) {
+                console.log(xhr)
+            }
+        });
+    }
+    $('#login_medal_form').submit(function (){
+        $.ajax({
+            url: "{% url 'accounts:login_for_medal' %}",
+            type: 'POST',
+            data: $(this).serialize(),
+            cache: false ,
+            success: function (data) {
+                if(data['status']=='SUCCESS'){
+                    window.location.reload();
+                }else {
+                    $('#login_medal_tip').text('账号或密码错误');
+                }
+            }
+        });
+        return false;
+    });
+</script>
+</body>
+</html>

@@ -84,7 +84,7 @@ def main_page(request):
     if authenticated:
         id = request.session.get('user_id')
         user = User.objects.get(id=id)
-    return render(request, 'miunottingham/main_page.html', locals())
+    return render(request, 'miunottingham/final_main_page.html', locals())
 
 
 def groups(request):
@@ -162,7 +162,7 @@ def new_activity(request, group_id):
 
 def edit_activity(request, act_id):
     if not request.session.get('is_login'):
-        return render(request, 'miunottingham/main_page.html')
+        return render(request, 'miunottingham/final_main_page.html')
     else:
         activity = Activities.objects.get(id=act_id)
         group = activity.group_name
@@ -233,7 +233,7 @@ def groupconfirm(request, code, user_id):
 
 def delete_act(request, act_id):
     if not request.session.get('is_login'):
-        return render(request, 'miunottingham/main_page.html')
+        return render(request, 'miunottingham/final_main_page.html')
     else:
         activity = Activities.objects.get(id=act_id)
         group = activity.group_name
@@ -258,7 +258,7 @@ def your_acts(request):
 
 def editgroup(request, group_id):
     if not request.session.get('is_login'):
-        return render(request, 'miunottingham/main_page.html')
+        return render(request, 'miunottingham/final_main_page.html')
     else:
         group = Groups.objects.get(id=group_id)
         user_id = request.session.get('user_id')
