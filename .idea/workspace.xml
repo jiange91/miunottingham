@@ -2,25 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89197962-5251-42ea-a772-b94ab128c239" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/miunottingham.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/miunottingham.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/base1.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/base1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/login_test.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/login_test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/maotouying_test.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/maotouying_test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/pswchange.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/pswchange.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/pswforget.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/pswforget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/userinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/userinfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/activities/templates/miunottingham/edit_activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/activities/templates/miunottingham/edit_activity.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/activities/templates/miunottingham/editgroup.html" beforeDir="false" afterPath="$PROJECT_DIR$/activities/templates/miunottingham/editgroup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/activities/templates/miunottingham/new_activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/activities/templates/miunottingham/new_activity.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/activities/templates/miunottingham/new_group.html" beforeDir="false" afterPath="$PROJECT_DIR$/activities/templates/miunottingham/new_group.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/activities/templates/miunottingham/test_register.html" beforeDir="false" afterPath="$PROJECT_DIR$/activities/templates/miunottingham/test_register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miunottingham/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/miunottingham/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miunottingham/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/miunottingham/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miunottingham/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/miunottingham/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +120,7 @@
       <updated>1536501244527</updated>
       <workItem from="1597558937127" duration="2464000" />
       <workItem from="1597561648866" duration="620000" />
-      <workItem from="1597562285727" duration="1525000" />
+      <workItem from="1597562285727" duration="2778000" />
     </task>
     <servers />
   </component>
