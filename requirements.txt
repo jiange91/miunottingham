@@ -7,4 +7,3 @@ Pillow==5.2.0
 pycparser==2.18
 pytz==2018.5
 six==1.11.0
-PyMySQL==0.9.2
